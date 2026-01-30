@@ -8,8 +8,11 @@ namespace Task3.Controllers;
 public class HomeController : ControllerBase
 {
     [HttpGet]
-    public string Index([FromQuery] string x, [FromQuery] string y)
+    public string Index([FromQuery] string? x, [FromQuery] string? y)
     {
+        if (string.IsNullOrEmpty(x) || string.IsNullOrEmpty(y))
+            return "NaN";
+
         if (BigInteger.TryParse(x, out var n1) && BigInteger.TryParse(y, out var n2))
         {
             if (n1 >= 1 && n2 >= 1)

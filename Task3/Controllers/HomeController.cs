@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using System.Numerics;
 
 namespace Task3.Controllers;
 
@@ -9,11 +10,11 @@ public class HomeController : Controller
     [HttpGet]
     public ActionResult<string> Index([FromQuery] string x, [FromQuery] string y)
     {
-        if (int.TryParse(x, out int n1) && int.TryParse(y, out int n2))
+        if (BigInteger.TryParse(x, out var n1) && BigInteger.TryParse(y, out var n2))
         {
             if (n1 >= 1 && n2 >= 1)
             {
-                int gcd = GCD(n1, n2);
+                BigInteger gcd = GCD(n1, n2);
 
                 return (n1 * n2 / gcd).ToString();
             }
@@ -22,11 +23,11 @@ public class HomeController : Controller
         return "NaN";
     }
 
-    private int GCD(int x, int y)
+    private BigInteger GCD(BigInteger x, BigInteger y)
     {
         while (y != 0)
         {
-            int r = x % y;
+            var r = x % y;
             x = y;
             y = r;
         }

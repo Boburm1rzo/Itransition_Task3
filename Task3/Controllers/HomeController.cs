@@ -7,7 +7,7 @@ namespace Task3.Controllers;
 public class HomeController : Controller
 {
     [HttpGet]
-    public ActionResult<string> Index(string x, string y)
+    public ActionResult<string> Index([FromQuery] string x, [FromQuery] string y)
     {
         if (int.TryParse(x, out int n1) && int.TryParse(y, out int n2))
         {
